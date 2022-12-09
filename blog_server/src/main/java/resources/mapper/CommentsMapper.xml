@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.server.mapper.CommentsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.server.pojo.Comments">
+        <id column="coid" property="coid" />
+        <result column="cid" property="cid" />
+        <result column="created" property="created" />
+        <result column="author" property="author" />
+        <result column="author_id" property="authorId" />
+        <result column="owner_id" property="ownerId" />
+        <result column="mail" property="mail" />
+        <result column="url" property="url" />
+        <result column="ip" property="ip" />
+        <result column="agent" property="agent" />
+        <result column="content" property="content" />
+        <result column="type" property="type" />
+        <result column="status" property="status" />
+        <result column="parent" property="parent" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        coid, cid, created, author, author_id, owner_id, mail, url, ip, agent, content, type, status, parent
+    </sql>
+
+</mapper>

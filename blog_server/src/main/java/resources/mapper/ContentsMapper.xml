@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.server.mapper.ContentsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.server.pojo.Contents">
+        <id column="cid" property="cid" />
+        <result column="title" property="title" />
+        <result column="slug" property="slug" />
+        <result column="created" property="created" />
+        <result column="modified" property="modified" />
+        <result column="content" property="content" />
+        <result column="author_id" property="authorId" />
+        <result column="type" property="type" />
+        <result column="status" property="status" />
+        <result column="tags" property="tags" />
+        <result column="categories" property="categories" />
+        <result column="hits" property="hits" />
+        <result column="comments_num" property="commentsNum" />
+        <result column="allow_comment" property="allowComment" />
+        <result column="allow_ping" property="allowPing" />
+        <result column="allow_feed" property="allowFeed" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cid, title, slug, created, modified, content, author_id, type, status, tags, categories, hits, comments_num, allow_comment, allow_ping, allow_feed
+    </sql>
+
+</mapper>

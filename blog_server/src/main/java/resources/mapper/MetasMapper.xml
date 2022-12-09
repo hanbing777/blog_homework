@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.server.mapper.MetasMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.server.pojo.Metas">
+        <id column="mid" property="mid" />
+        <result column="name" property="name" />
+        <result column="slug" property="slug" />
+        <result column="type" property="type" />
+        <result column="description" property="description" />
+        <result column="sort" property="sort" />
+        <result column="parent" property="parent" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        mid, name, slug, type, description, sort, parent
+    </sql>
+
+</mapper>
