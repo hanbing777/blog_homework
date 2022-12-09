@@ -21,4 +21,8 @@
         uid, username, password, email, home_url, screen_name, created, activated, logged, group_name
     </sql>
 
+    <select id="getUserByUserName" resultType="com.example.server.pojo.Users">
+        select * from t_users where username = #{username}
+    </select>
+
 </mapper>

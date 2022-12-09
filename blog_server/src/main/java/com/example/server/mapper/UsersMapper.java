@@ -2,6 +2,7 @@ package com.example.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.server.pojo.Users;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,8 @@ import com.example.server.pojo.Users;
  * @author hanbing
  * @since 2022-12-09
  */
+@Mapper
 public interface UsersMapper extends BaseMapper<Users> {
 
+    Users getUserByUserName(String username);
 }

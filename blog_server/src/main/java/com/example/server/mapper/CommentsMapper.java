@@ -2,6 +2,7 @@ package com.example.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.server.pojo.Comments;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.example.server.pojo.Comments;
  * @author hanbing
  * @since 2022-12-09
  */
+@Mapper
 public interface CommentsMapper extends BaseMapper<Comments> {
 
 }
