@@ -14,4 +14,12 @@
         name, value, description
     </sql>
 
+    <update id="updateByName" parameterType="com.example.server.pojo.Options">
+        UPDATE t_options SET  `value`=#{value},`description`=#{description} WHERE `name` = #{name}
+    </update>
+
+    <select id="getByName" resultType="com.example.server.mapper.OptionsMapper">
+        select * from t_options where name =#{name}
+    </select>
+
 </mapper>

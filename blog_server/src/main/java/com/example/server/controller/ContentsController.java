@@ -21,7 +21,7 @@ public class ContentsController {
     @Autowired
     private ContentsMapper contentsMapper;
     @PostMapping("addContents")
-    public RespBean addContents(Contents contents){
+    public RespBean addContents(@RequestBody Contents contents){
         if (contentsMapper.insert(contents)>0) {
             return RespBean.success("成功");
         }else {
@@ -39,7 +39,7 @@ public class ContentsController {
     }
 
     @PostMapping("updateContents")
-    public RespBean updateContents(Contents contents){
+    public RespBean updateContents(@RequestBody Contents contents){
         if (contentsMapper.updateById(contents)>0) {
             return RespBean.success("修改成功");
         }else {

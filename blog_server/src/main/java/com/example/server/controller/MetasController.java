@@ -21,7 +21,7 @@ public class MetasController {
     @Autowired
     private MetasMapper metasMapper;
     @PostMapping("addMetas")
-    public RespBean addMetas(Metas metas){
+    public RespBean addMetas(@RequestBody Metas metas){
         if (metasMapper.insert(metas)>0) {
             return RespBean.success("添加成功");
         }else {
@@ -39,7 +39,7 @@ public class MetasController {
     }
 
     @PostMapping("updateMetasById")
-    public RespBean updateMetasById(Metas metas){
+    public RespBean updateMetasById(@RequestBody Metas metas){
         if (metasMapper.updateById(metas)>0) {
             return RespBean.success("删除成功");
         }else {

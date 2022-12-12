@@ -5,9 +5,7 @@ import com.example.server.mapper.CommentsMapper;
 import com.example.server.pojo.Comments;
 import com.example.server.pojo.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -18,10 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-12-09
  */
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("admin/comments")
 public class CommentsController {
     @Autowired
     private CommentsMapper commentsMapper;
+
+    @GetMapping("listAll")
+    public RespBean listAll(){
+        return RespBean.success("查询成功",commentsMapper.selectList(null));
+    }
+
+    @GetMapping("deleteById/{id}")
+    public RespBean deleteById(@PathVariable int id){
+        if (commentsMapper.deleteById(id)>0) {
+            return RespBean.success("删除成功");
+        }else {
+            return RespBean.error("删除失败");
+        }
+    }
 
 
 }

@@ -21,6 +21,14 @@
         uid, username, password, email, home_url, screen_name, created, activated, logged, group_name
     </sql>
 
+    <update id="updateUserNameAndEmail" parameterType="com.example.server.pojo.Bo.UserNameAndEmail">
+        update t_users set username = #{username} ,email = #{email}  where uid = 1
+    </update>
+
+    <update id="updatePassword">
+        update t_users set password = #{password} where uid = 1
+    </update>
+
     <select id="getUserByUserName" resultType="com.example.server.pojo.Users">
         select * from t_users where username = #{username}
     </select>
