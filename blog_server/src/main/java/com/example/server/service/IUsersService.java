@@ -16,5 +16,5 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface IUsersService extends IService<Users> {
 
-    RespBean login(String username, String password, String code, HttpServletRequest request);
+    RespBean login(String username, String password, String code,String ip, HttpServletRequest request);
 }

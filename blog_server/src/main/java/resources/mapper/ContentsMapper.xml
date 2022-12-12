@@ -20,11 +20,21 @@
         <result column="allow_comment" property="allowComment" />
         <result column="allow_ping" property="allowPing" />
         <result column="allow_feed" property="allowFeed" />
+        <result column="deleted" property="deleted" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         cid, title, slug, created, modified, content, author_id, type, status, tags, categories, hits, comments_num, allow_comment, allow_ping, allow_feed
     </sql>
+
+    <update id="statusToPublishByCid">
+        update t_contents set status = publish where cid = #{cid}
+    </update>
+
+
+    <update id="statusToDraftByCid">D
+        update t_contents set status = draft where cid = #{cid}
+    </update>
 
 </mapper>

@@ -25,4 +25,8 @@
         select * from t_users where username = #{username}
     </select>
 
+    <select id="getIdByUserName" resultType="java.lang.Integer">
+        select uid from t_users where username = #{username}
+    </select>
+
 </mapper>

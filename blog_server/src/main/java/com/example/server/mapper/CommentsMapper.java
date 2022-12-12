@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.server.pojo.Comments;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  Mapper 接口
@@ -15,4 +18,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CommentsMapper extends BaseMapper<Comments> {
 
+    List<Comments> selectByCid(Integer cid);
+
+    Integer updateHitsByCid(Map<String,Integer> map);
 }

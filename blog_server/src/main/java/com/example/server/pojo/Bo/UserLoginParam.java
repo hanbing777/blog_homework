@@ -27,4 +27,5 @@ public class UserLoginParam {
     private String password;
     @ApiModelProperty(value = "验证码",required = true)
     private String code;
+    private String ip;
 }

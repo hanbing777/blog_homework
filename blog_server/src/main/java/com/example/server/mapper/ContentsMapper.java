@@ -15,4 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ContentsMapper extends BaseMapper<Contents> {
 
+    int statusToPublishByCid(int cid);
+    int statusToDraftByCid(int cid);
 }

@@ -18,11 +18,20 @@
         <result column="type" property="type" />
         <result column="status" property="status" />
         <result column="parent" property="parent" />
+        <result column="deleted" property="deleted" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         coid, cid, created, author, author_id, owner_id, mail, url, ip, agent, content, type, status, parent
     </sql>
+
+    <update id="updateHitsByCid" parameterType="map">
+        update t_contents set hits = #{hits} WHERE cid = #{cid}
+    </update>
+
+    <select id="selectByCid" resultType="com.example.server.pojo.Comments">
+        select * from t_comments where cid = #{cid}
+    </select>
 
 </mapper>

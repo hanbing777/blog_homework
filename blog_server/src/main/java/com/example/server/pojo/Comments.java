@@ -1,9 +1,6 @@
 package com.example.server.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -62,6 +59,9 @@ public class Comments implements Serializable {
     private String status;
 
     private Integer parent;
+
+    @TableLogic
+    private Integer deleted;
 
 
 }

@@ -2,7 +2,9 @@ package com.example.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.server.Utils.JwtTokenUtils;
+import com.example.server.mapper.LogsMapper;
 import com.example.server.mapper.UsersMapper;
+import com.example.server.pojo.Logs;
 import com.example.server.pojo.RespBean;
 import com.example.server.pojo.Users;
 import com.example.server.service.IUsersService;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +37,10 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
+    private LogsMapper logsMapper;
+    @Autowired
+    private UsersMapper usersMapper;
+    @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtTokenUtils jwtTokenUtils;
@@ -41,7 +48,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     private String tokenHead;
 
     @Override
-    public RespBean login(String username, String password, String code, HttpServletRequest request) {
+    public RespBean login(String username, String password, String code,String ip, HttpServletRequest request) {
         String captcha = (String) request.getSession().getAttribute("captcha");
         if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)) {
             return RespBean.error("验证码出入错误,请重新驶入");
@@ -67,6 +74,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
+        logsMapper.insert(new Logs(null,"后台登录",null,usersMapper.getIdByUserName(username),ip,((int)(System.currentTimeMillis()/1000))));
         return RespBean.success("登录成功", tokenMap);
     }
 }

@@ -18,4 +18,8 @@
         mid, name, slug, type, description, sort, parent
     </sql>
 
+    <select id="getMetasByType" resultType="com.example.server.pojo.Metas">
+        select * from t_metas where type = #{type}
+    </select>
+
 </mapper>
