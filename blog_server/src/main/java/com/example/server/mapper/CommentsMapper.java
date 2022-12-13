@@ -21,4 +21,8 @@ public interface CommentsMapper extends BaseMapper<Comments> {
     List<Comments> selectByCid(Integer cid);
 
     Integer updateHitsByCid(Map<String,Integer> map);
+
+    int getCount();
+
+    List<Comments> getCommentsByCid(int cid);
 }

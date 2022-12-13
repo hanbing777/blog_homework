@@ -22,4 +22,8 @@
         select * from t_metas where type = #{type}
     </select>
 
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_metas WHERE type = "link"
+    </select>
+
 </mapper>

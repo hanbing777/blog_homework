@@ -2,14 +2,15 @@ package com.example.server.controller;
 
 
 import com.example.server.mapper.UsersMapper;
+import com.example.server.pojo.Bo.Password;
 import com.example.server.pojo.Bo.UserNameAndEmail;
 import com.example.server.pojo.RespBean;
+import com.example.server.pojo.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -30,18 +31,28 @@ public class UsersController {
     @PostMapping("updateUserNameAndEmail")
     public RespBean updateUserNameAndEmail(@RequestBody UserNameAndEmail userNameAndEmail){
         if (usersMapper.updateUserNameAndEmail(userNameAndEmail)>0) {
-            return RespBean.success("修改成功");
+            Map<String, Object> map = usersMapper.selectAllByUid(1);
+            map.put("password","");
+            return RespBean.success("修改成功",map);
         }else {
             return RespBean.error("修改失败");
         }
     }
 
     @PostMapping("updatePassword")
-    public RespBean updatePassword(@RequestBody String password){
-        if (usersMapper.updatePassword(passwordEncoder.encode(password))>0) {
+    public RespBean updatePassword(@RequestBody Password password){
+        System.out.println(password.getPassword());
+        if (usersMapper.updatePassword(passwordEncoder.encode(password.getPassword()))>0) {
             return RespBean.success("修改成功");
         }else {
             return RespBean.error("修改失败");
         }
+    }
+
+    @GetMapping("getUserInfo")
+    public RespBean getUserInfo(){
+        Map<String, Object> map = usersMapper.selectAllByUid(1);
+        map.put("password","");
+        return RespBean.success("获取成功",map);
     }
 }

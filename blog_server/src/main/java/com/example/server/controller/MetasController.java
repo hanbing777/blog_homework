@@ -1,11 +1,13 @@
 package com.example.server.controller;
 
 
-import com.example.server.mapper.MetasMapper;
+import com.example.server.mapper.*;
 import com.example.server.pojo.Metas;
 import com.example.server.pojo.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 /**
  * <p>
@@ -20,6 +22,14 @@ import org.springframework.web.bind.annotation.*;
 public class MetasController {
     @Autowired
     private MetasMapper metasMapper;
+    @Autowired
+    private ContentsMapper contentsMapper;
+    @Autowired
+    private CommentsMapper commentsMapper;
+    @Autowired
+    private AttachMapper attachMapper;
+    @Autowired
+    private LogsMapper logsMapper;
     @PostMapping("addMetas")
     public RespBean addMetas(@RequestBody Metas metas){
         if (metasMapper.insert(metas)>0) {
@@ -50,6 +60,22 @@ public class MetasController {
     @GetMapping("getMetasByType/{type}")
     public RespBean getMetasByType(@PathVariable String type){
         return RespBean.success("查询成功",metasMapper.getMetasByType(type));
+    }
+
+
+    @GetMapping("getLinkCount")
+    public RespBean getLinkCount(){
+        return RespBean.success("获取成功",metasMapper.getCount());
+    }
+
+    @GetMapping("getCount")
+    public RespBean getCount(){
+        HashMap<String, Integer> countMap = new HashMap<>();
+        countMap.put("contentsCount",contentsMapper.getCount());
+        countMap.put("fileCount",attachMapper.getCount());
+        countMap.put("commentsCount",commentsMapper.getCount());
+        countMap.put("linkCount",metasMapper.getCount());
+        return RespBean.success("获取成功",countMap);
     }
 
 

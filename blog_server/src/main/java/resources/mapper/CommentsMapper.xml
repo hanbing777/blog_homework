@@ -34,4 +34,12 @@
         select * from t_comments where cid = #{cid}
     </select>
 
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_comments WHERE deleted = 0
+    </select>
+
+    <select id="getCommentsByCid" resultType="com.example.server.pojo.Comments">
+        select * from t_comments where cid = #{cid}
+    </select>
+
 </mapper>

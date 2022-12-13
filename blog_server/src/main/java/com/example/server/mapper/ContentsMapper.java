@@ -17,4 +17,6 @@ public interface ContentsMapper extends BaseMapper<Contents> {
 
     int statusToPublishByCid(int cid);
     int statusToDraftByCid(int cid);
+
+    int getCount();
 }

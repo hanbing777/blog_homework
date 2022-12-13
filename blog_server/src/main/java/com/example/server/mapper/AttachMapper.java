@@ -15,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface AttachMapper extends BaseMapper<Attach> {
 
+    Integer getCount();
 }

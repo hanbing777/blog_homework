@@ -37,4 +37,8 @@
         select uid from t_users where username = #{username}
     </select>
 
+    <select id="selectAllByUid" resultType="map">
+        select * from t_users where uid = #{uid}
+    </select>
+
 </mapper>

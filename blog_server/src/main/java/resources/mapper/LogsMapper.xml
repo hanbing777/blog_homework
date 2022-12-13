@@ -16,5 +16,8 @@
     <sql id="Base_Column_List">
         id, action, data, author_id, ip, created
     </sql>
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_logs
+    </select>
 
 </mapper>

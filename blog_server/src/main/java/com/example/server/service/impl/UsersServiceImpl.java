@@ -75,6 +75,11 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
         logsMapper.insert(new Logs(null,"后台登录",null,usersMapper.getIdByUserName(username),ip,((int)(System.currentTimeMillis()/1000))));
-        return RespBean.success("登录成功", tokenMap);
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> allInfo = usersMapper.selectAllByUid(1);
+        allInfo.put("password","");
+        map.put("token",tokenMap);
+        map.put("allInfo",allInfo);
+        return RespBean.success("登录成功", map);
     }
 }

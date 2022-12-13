@@ -17,4 +17,8 @@
         id, fname, ftype, fkey, author_id, created
     </sql>
 
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_attach
+    </select>
+
 </mapper>

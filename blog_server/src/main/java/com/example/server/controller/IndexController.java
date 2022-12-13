@@ -56,19 +56,19 @@ public class IndexController {
     @GetMapping("likeAndPage/{page}/{size}")
     public RespBean likeAndPage(@PathVariable("page") Integer page,
                          @PathVariable("size") Integer size) {
-        Page<Contents> booksPage = new Page<>(page, size);
-        return RespBean.success("查询成功", contentsMapper.selectPage(booksPage, null));
+        Page<Contents> contentsPage = new Page<>(page, size);
+        return RespBean.success("查询成功", contentsMapper.selectPage(contentsPage, null));
     }
 
     @GetMapping("likeAndPage/{name}/{page}/{size}")
-    public RespBean likeAndPage(@PathVariable("name") String name,
+    public RespBean likeAndPage(@PathVariable("name") String title,
                                 @PathVariable("page") Integer page,
                                 @PathVariable("size") Integer size) {
-        Page<Contents> booksPage = new Page<>(page, size);
-        QueryWrapper<Contents> booksQueryWrapper = new QueryWrapper<>();
-        booksQueryWrapper.like("name", name);
-        contentsMapper.selectPage(booksPage, booksQueryWrapper);
-        return RespBean.success("查询成功", contentsMapper.selectPage(booksPage, booksQueryWrapper));
+        Page<Contents> contentsPage = new Page<>(page, size);
+        QueryWrapper<Contents> contentsWrapper = new QueryWrapper<>();
+        contentsWrapper.like("title", title);
+        contentsMapper.selectPage(contentsPage, contentsWrapper);
+        return RespBean.success("查询成功", contentsMapper.selectPage(contentsPage, contentsWrapper));
     }
 
     @PostMapping("addComments")

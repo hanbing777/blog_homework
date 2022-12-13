@@ -1,9 +1,12 @@
 package com.example.server.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.server.Utils.FdfsUtils;
 import com.example.server.mapper.AttachMapper;
 import com.example.server.pojo.Attach;
+import com.example.server.pojo.Comments;
 import com.example.server.pojo.RespBean;
 import com.example.server.service.IAttachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +57,14 @@ public class AttachController {
     @GetMapping("listAll")
     public RespBean listAll(){
         return RespBean.success("查询成功",attachMapper.selectList(null));
+    }
+
+    @GetMapping("likeAndPage/{page}/{size}")
+    public RespBean likeAndPage(@PathVariable("page") Integer page,
+                                @PathVariable("size") Integer size) {
+        Page<Attach> AttachPage = new Page<>(page, size);
+        QueryWrapper<Attach> attachQueryWrapper = new QueryWrapper<>();
+        return RespBean.success("查询成功", attachMapper.selectPage(AttachPage, attachQueryWrapper));
     }
 
 

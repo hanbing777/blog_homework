@@ -5,6 +5,8 @@ import com.example.server.pojo.Bo.UserNameAndEmail;
 import com.example.server.pojo.Users;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 /**
  * <p>
  *  Mapper 接口
@@ -23,4 +25,6 @@ public interface UsersMapper extends BaseMapper<Users> {
     Integer updateUserNameAndEmail(UserNameAndEmail userNameAndEmail);
 
     Integer updatePassword(String password);
+
+    Map<String,Object> selectAllByUid(int i);
 }

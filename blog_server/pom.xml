@@ -17,6 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <docker.image.prefix>springboot</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -143,6 +144,12 @@
             <artifactId>junit</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -151,6 +158,29 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.1.7.RELEASE</version>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+
+                <configuration>
+                    <!--远程Docker的地址-->
+                    <dockerHost>https://hanbing777.top:2376</dockerHost>
+                    <!--tls证书-->
+                    <dockerCertPath>F:\dockerkey\ali</dockerCertPath>
+                    <!--镜像名称，前缀/项目名-->
+                    <imageName>blog_homework</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

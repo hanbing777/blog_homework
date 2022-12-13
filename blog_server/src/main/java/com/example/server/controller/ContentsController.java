@@ -1,11 +1,17 @@
 package com.example.server.controller;
 
 
+import com.example.server.mapper.CommentsMapper;
 import com.example.server.mapper.ContentsMapper;
+import com.example.server.pojo.Comments;
 import com.example.server.pojo.Contents;
 import com.example.server.pojo.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,6 +26,8 @@ import org.springframework.web.bind.annotation.*;
 public class ContentsController {
     @Autowired
     private ContentsMapper contentsMapper;
+    @Autowired
+    private CommentsMapper commentsMapper;
     @PostMapping("addContents")
     public RespBean addContents(@RequestBody Contents contents){
         if (contentsMapper.insert(contents)>0) {
@@ -28,6 +36,14 @@ public class ContentsController {
             return RespBean.error("失败");
         }
     }
+
+    @GetMapping(value = {"article/{cid}"})
+    public RespBean getArticle(@PathVariable Integer cid) {
+        Contents contents = contentsMapper.selectById(cid);
+        return RespBean.success("查看成功",contents);
+    }
+
+
 
     @GetMapping("deleteContents/{cid}")
     public RespBean deleteContents(@PathVariable("cid") int cid){
@@ -40,6 +56,7 @@ public class ContentsController {
 
     @PostMapping("updateContents")
     public RespBean updateContents(@RequestBody Contents contents){
+        contents.setCreated((int)(System.currentTimeMillis()/1000));
         if (contentsMapper.updateById(contents)>0) {
             return RespBean.success("修改成功");
         }else {
@@ -64,6 +81,13 @@ public class ContentsController {
             return RespBean.error("修改失败");
         }
     }
+
+    @GetMapping("getCount")
+    public RespBean getCount(){
+        return RespBean.success("获取成功",contentsMapper.getCount());
+    }
+
+
 
 
 }

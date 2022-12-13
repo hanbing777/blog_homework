@@ -18,4 +18,6 @@ import java.util.List;
 public interface MetasMapper extends BaseMapper<Metas> {
 
     List<Metas> getMetasByType(String type);
+
+    int getCount();
 }

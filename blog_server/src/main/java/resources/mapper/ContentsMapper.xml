@@ -29,12 +29,15 @@
     </sql>
 
     <update id="statusToPublishByCid">
-        update t_contents set status = publish where cid = #{cid}
+        update t_contents set status = "publish" where cid = #{cid}
     </update>
 
 
-    <update id="statusToDraftByCid">D
-        update t_contents set status = draft where cid = #{cid}
+    <update id="statusToDraftByCid">
+        update t_contents set status = "draft" where cid = #{cid}
     </update>
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_contents WHERE deleted = 0
+    </select>
 
 </mapper>

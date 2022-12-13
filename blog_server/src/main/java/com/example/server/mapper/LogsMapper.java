@@ -15,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface LogsMapper extends BaseMapper<Logs> {
 
+    Integer getCount();
 }
