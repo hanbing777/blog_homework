@@ -25,12 +25,12 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://47.99.49.255:3307/blog_homework?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-#    username: blog_homework
-#    password: blog_homework
-    url: jdbc:mysql://127.0.0.1/blog_homework?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
+    url: jdbc:mysql://47.99.49.255:3307/blog_homework?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: blog_homework
+    password: blog_homework
+#    url: jdbc:mysql://127.0.0.1/blog_homework?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: root
     hikari:
       # 连接池名
       pool-name: DateHikariCP

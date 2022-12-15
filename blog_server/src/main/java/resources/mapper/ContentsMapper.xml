@@ -4,40 +4,63 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.server.pojo.Contents">
-        <id column="cid" property="cid" />
-        <result column="title" property="title" />
-        <result column="slug" property="slug" />
-        <result column="created" property="created" />
-        <result column="modified" property="modified" />
-        <result column="content" property="content" />
-        <result column="author_id" property="authorId" />
-        <result column="type" property="type" />
-        <result column="status" property="status" />
-        <result column="tags" property="tags" />
-        <result column="categories" property="categories" />
-        <result column="hits" property="hits" />
-        <result column="comments_num" property="commentsNum" />
-        <result column="allow_comment" property="allowComment" />
-        <result column="allow_ping" property="allowPing" />
-        <result column="allow_feed" property="allowFeed" />
-        <result column="deleted" property="deleted" />
+        <id column="cid" property="cid"/>
+        <result column="title" property="title"/>
+        <result column="slug" property="slug"/>
+        <result column="created" property="created"/>
+        <result column="modified" property="modified"/>
+        <result column="content" property="content"/>
+        <result column="author_id" property="authorId"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
+        <result column="tags" property="tags"/>
+        <result column="categories" property="categories"/>
+        <result column="hits" property="hits"/>
+        <result column="comments_num" property="commentsNum"/>
+        <result column="allow_comment" property="allowComment"/>
+        <result column="allow_ping" property="allowPing"/>
+        <result column="allow_feed" property="allowFeed"/>
+        <result column="deleted" property="deleted"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        cid, title, slug, created, modified, content, author_id, type, status, tags, categories, hits, comments_num, allow_comment, allow_ping, allow_feed
+        cid
+        , title, slug, created, modified, content, author_id, type, status, tags, categories, hits, comments_num, allow_comment, allow_ping, allow_feed
     </sql>
 
     <update id="statusToPublishByCid">
-        update t_contents set status = "publish" where cid = #{cid}
+        update t_contents
+        set status = "publish"
+        where cid = #{cid}
     </update>
 
 
     <update id="statusToDraftByCid">
-        update t_contents set status = "draft" where cid = #{cid}
+        update t_contents
+        set status = "draft"
+        where cid = #{cid}
     </update>
     <select id="getCount" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM t_contents WHERE deleted = 0
+        SELECT COUNT(*)
+        FROM t_contents
+        WHERE deleted = 0
+    </select>
+
+    <select id="getDate" resultType="java.lang.String">
+        select FROM_UNIXTIME(created, '%Y年%m月') as date
+        from
+            t_contents
+        where status = 'publish' and deleted = 0
+        group by date
+        order by
+            date desc
+    </select>
+
+    <select id="getGuiDang" resultType="java.util.Map">
+        SELECT *
+        FROM t_contents
+        WHERE status = 'publish' and deleted = 0 and DATE_FORMAT(FROM_UNIXTIME(`created`), '%Y年%m月')= #{date}
     </select>
 
 </mapper>

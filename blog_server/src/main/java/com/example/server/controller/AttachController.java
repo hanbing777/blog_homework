@@ -54,6 +54,15 @@ public class AttachController {
         attachService.downloadFile(id, response);
     }
 
+    @GetMapping("deleteById/{id}")
+    public RespBean deleteById(@PathVariable("id") Integer id)  {
+        if (attachMapper.deleteById(id)>0) {
+            return RespBean.success("删除成功");
+        }else {
+            return RespBean.success("删除失败");
+        }
+    }
+
     @GetMapping("listAll")
     public RespBean listAll(){
         return RespBean.success("查询成功",attachMapper.selectList(null));

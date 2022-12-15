@@ -2,6 +2,7 @@ package com.example.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.server.pojo.Attach;
+import com.example.server.pojo.RespBean;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,4 +18,5 @@ import java.io.IOException;
 public interface IAttachService extends IService<Attach> {
 
     void downloadFile(Integer id, HttpServletResponse response) throws IOException;
+
 }

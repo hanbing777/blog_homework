@@ -30,6 +30,7 @@ public class ContentsController {
     private CommentsMapper commentsMapper;
     @PostMapping("addContents")
     public RespBean addContents(@RequestBody Contents contents){
+        contents.setCreated((int)(System.currentTimeMillis()/1000));
         if (contentsMapper.insert(contents)>0) {
             return RespBean.success("成功");
         }else {
@@ -56,7 +57,7 @@ public class ContentsController {
 
     @PostMapping("updateContents")
     public RespBean updateContents(@RequestBody Contents contents){
-        contents.setCreated((int)(System.currentTimeMillis()/1000));
+        contents.setModified((int)(System.currentTimeMillis()/1000));
         if (contentsMapper.updateById(contents)>0) {
             return RespBean.success("修改成功");
         }else {
@@ -86,6 +87,8 @@ public class ContentsController {
     public RespBean getCount(){
         return RespBean.success("获取成功",contentsMapper.getCount());
     }
+
+
 
 
 
