@@ -48,7 +48,7 @@
     </select>
 
     <select id="getDate" resultType="java.lang.String">
-        select FROM_UNIXTIME(created, '%Y年%m月') as date
+        select FROM_UNIXTIME(created, '%Y-%m') as date
         from
             t_contents
         where status = 'publish' and deleted = 0
@@ -60,7 +60,7 @@
     <select id="getGuiDang" resultType="java.util.Map">
         SELECT *
         FROM t_contents
-        WHERE status = 'publish' and deleted = 0 and DATE_FORMAT(FROM_UNIXTIME(`created`), '%Y年%m月')= #{date}
+        WHERE status = 'publish' and deleted = 0 and DATE_FORMAT(FROM_UNIXTIME(`created`), '%Y-%m')= #{date}
     </select>
 
 </mapper>
