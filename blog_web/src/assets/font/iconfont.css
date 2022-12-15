@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1646834324933') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-school:before {
+  content: "\e66a";
+}
+
+.icon-BasicIcons-all-:before {
+  content: "\e858";
+}
+
+.icon-BasicIcons-all-1:before {
+  content: "\e862";
+}
+
+.icon-browse:before {
+  content: "\e666";
+}
+
+.icon-chart-bar:before {
+  content: "\e667";
+}
+
+.icon-download:before {
+  content: "\e66c";
+}
+
+.icon-eye-close:before {
+  content: "\e66f";
+}
+
+.icon-hide:before {
+  content: "\e673";
+}
+
+.icon-home:before {
+  content: "\e674";
+}
+
+.icon-link:before {
+  content: "\e676";
+}
+
+.icon-telephone:before {
+  content: "\e680";
+}
+
+.icon-unlock:before {
+  content: "\e682";
+}
+
+.icon-guanbi:before {
+  content: "\e6de";
+}
+
+.icon-guanlizheshouye:before {
+  content: "\e630";
+}
+
+.icon-xiugai:before {
+  content: "\e631";
+}
+
+.icon-youxiang:before {
+  content: "\e632";
+}
+
+.icon-suoding:before {
+  content: "\e615";
+}
+
