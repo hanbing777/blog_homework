@@ -11,21 +11,21 @@
       }}条评论&nbsp;&nbsp;/&nbsp;&nbsp;{{ article.hits }}浏览
     </div>
     <mavon-editor
-      v-if="zuJianWD"
-      :editable="false"
-      :value="zuJianWD"
-      :subfield="false"
-      :defaultOpen="'preview'"
-      :toolbarsFlag="false"
-      :scrollStyle="true"
-      :ishljs="true"
-      :navigation="true"
-      @navigationToggle="onAddUrl"
-      style="z-index: 10; width: 80%; margin-left: 10%; min-height: 90px"
+        v-if="zuJianWD"
+        :editable="false"
+        :value="zuJianWD"
+        :subfield="false"
+        :defaultOpen="'preview'"
+        :toolbarsFlag="false"
+        :scrollStyle="true"
+        :ishljs="true"
+        :navigation="true"
+        @navigationToggle="onAddUrl"
+        style="z-index: 10; width: 80%; margin-left: 10%; min-height: 200px"
     />
     <!-- 发布评论 -->
     <div
-      style="
+        style="
         background: #fff;
         width: 80%;
         margin-left: auto;
@@ -34,7 +34,7 @@
       "
     >
       <div
-        style="
+          style="
           background: #accbee;
           color: #fff;
           font-size: 20px;
@@ -47,23 +47,23 @@
         发布评论
       </div>
       <el-form
-        :inline="true"
-        :model="ruleForm"
-        class="demo-form-inline"
-        :rules="rules"
-        ref="ruleForm"
-        style="margin: 10px; width: 78%; margin-left: auto; margin-right: auto"
+          :inline="true"
+          :model="ruleForm"
+          class="demo-form-inline"
+          :rules="rules"
+          ref="ruleForm"
+          style="margin: 10px; width: 78%; margin-left: auto; margin-right: auto"
       >
         <el-form-item label="用户名:" prop="author">
           <el-input
-            v-model="ruleForm.author"
-            placeholder="请输入用户名"
+              v-model="ruleForm.author"
+              placeholder="请输入用户名"
           ></el-input>
         </el-form-item>
         <el-form-item prop="mail">
           <el-input
-            v-model="ruleForm.mail"
-            placeholder="请输入邮箱地址"
+              v-model="ruleForm.mail"
+              placeholder="请输入邮箱地址"
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -71,14 +71,15 @@
         </el-form-item>
         <el-form-item>
           <el-button
-            style="background-color: #6e8cd7; color: #fff"
-            @click="submitForm('ruleForm')"
-            >提交</el-button
+              style="background-color: #6e8cd7; color: #fff"
+              @click="submitForm('ruleForm')"
+          >提交
+          </el-button
           >
         </el-form-item>
-        <br />
+        <br/>
         <el-form-item label="评论内容">
-          <VueEmoji ref="emoji" @input="onInput" :value="ruleForm.content" />
+          <VueEmoji ref="emoji" @input="onInput" :value="ruleForm.content"/>
         </el-form-item>
         <el-form-item>
           <el-button @click="clearTextarea">清空</el-button>
@@ -87,7 +88,7 @@
     </div>
     <!-- 遍历评论 -->
     <div
-      style="
+        style="
         width: 80%;
         margin-left: auto;
         margin-right: auto;
@@ -99,19 +100,21 @@
         <el-row>
           <el-col :span="2">
             <el-avatar
-              :size="50"
-              src="https://img2.baidu.com/it/u=3969710885,433730833&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+                :size="50"
+                src="https://img2.baidu.com/it/u=3969710885,433730833&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
             ></el-avatar
-          ></el-col>
+            >
+          </el-col>
           <el-col :span="1"></el-col>
           <el-col
-            :span="18"
-            style="height: 50px; line-height: 50px; font-size: 15px"
-            >{{ comment.author }}</el-col
+              :span="18"
+              style="height: 50px; line-height: 50px; font-size: 15px"
+          >{{ comment.author }}
+          </el-col
           >
         </el-row>
         <div style="padding: 10px; font-size: 14px">{{ comment.content }}</div>
-        <div style="padding: 10px">{{ comment.created | dateFormat}}</div>
+        <div style="padding: 10px">{{ comment.created | dateFormat }}</div>
       </el-card>
     </div>
   </div>
@@ -119,6 +122,7 @@
 
 <script>
 import VueEmoji from "emoji-vue";
+
 export default {
   components: {
     VueEmoji,
@@ -160,7 +164,7 @@ export default {
       },
       rules: {
         author: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
+          {required: true, message: "请输入用户名", trigger: "blur"},
           // { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
         ],
         mail: [
@@ -171,7 +175,7 @@ export default {
           },
         ],
         content: [
-          { required: true, message: "请输入评论内容", trigger: "blur" },
+          {required: true, message: "请输入评论内容", trigger: "blur"},
           // { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
         ],
       },
@@ -211,7 +215,7 @@ export default {
           _a.href = "#" + _a.id;
           _a.innerText = text;
           _aParent.removeChild(_text);
-          // console.log(_aList[i]);
+          console.log(_aList[i]);
         }
         // console.log(_aList);
       });
@@ -241,7 +245,15 @@ export default {
           if (result.data.code == 200) {
             this.$message.success(result.data.messges);
             this.showComment(this.$route.params.cid);
+            this.ruleForm = {
+              author: "",
+              mail: "",
+              url: "",
+              content: "",
+            };
+            this.$refs.emoji.clear();
           } else {
+
             this.$message.error(result.data.messges);
           }
         } else {
@@ -252,13 +264,13 @@ export default {
     },
     // 展示评论
     async showComment(cid) {
-       this.getArticlePublish(this.$route.params.cid);
+      this.getArticlePublish(this.$route.params.cid);
       // console.log(cid);
     },
     onInput(event) {
       //event.data contains the value of the textarea
-      console.log(event)
-      this.ruleForm.content = event.data
+      console.log(event);
+      this.ruleForm.content = event.data;
     },
     clearTextarea() {
       this.$refs.emoji.clear();
@@ -278,6 +290,7 @@ export default {
   color: black;
   padding: 2%;
 }
+
 .article-tags {
   width: 79%;
   margin-left: auto;
@@ -287,6 +300,7 @@ export default {
   background-color: #ffffff;
   font-size: 15px;
 }
+
 .emoji-vue-wraper emoji-wysiwyg-editor {
   max-height: 350px;
 }
